@@ -11,6 +11,7 @@ import morgan from "morgan";            //It is a great tool that logs the reque
 import path from "path";                //The Path module provides a way of working with directories and file paths.
 import { fileURLToPath } from "url";    //used to set paths when we configure directories .
 import { error, log } from "console";
+import { register } from "../social media app/controllers/auth.js";    //to create a request router.
 
 
 /*CONFIGURATIONS*/ 
@@ -42,6 +43,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 
 
+/*ROUTES WITH FILES */
+
+app.post("/auth/register", upload.single("picture"),register);  //route to path to middleware function( upload picture locally),before hitting the endpoint(register-controller)
+
+
+
 /*MONGOOSE SETUP*/
 
 const PORT = process.env.PORT || 6001;
@@ -51,10 +58,3 @@ mongoose.connect(process.env.MONGO_URL, {
 }).then(()=>{
     app.listen(PORT, ()=> console.log( `Server port : ${PORT}`));
 }).catch((error) => console.log(`${error} did not connect to the server`));
-
-
-/*A test-2 check */
-
-/*This is third test on git */
-
-/*test 4*/

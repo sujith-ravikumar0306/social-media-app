@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";    //encrypt the password
-import jwt form "jsonwebtoken";  //send user a web token for authorisation
+import jwt from "jsonwebtoken";  //send user a web token for authorisation
 import User from "../models/user.js";
 import user from "../models/user.js";
 
@@ -8,7 +8,7 @@ import user from "../models/user.js";
 //req-> request body from backend, res->response sent to frontend
 export const register = async (req,res) => {
     try{
-        Const{
+        const{
             firstname,
             lastname,
             email,

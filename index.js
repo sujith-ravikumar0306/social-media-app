@@ -11,7 +11,7 @@ import morgan from "morgan";            //It is a great tool that logs the reque
 import path from "path";                //The Path module provides a way of working with directories and file paths.
 import { fileURLToPath } from "url";    //used to set paths when we configure directories .
 import { error, log } from "console";
-import { register } from "./contollers/auth.js";    //to create a request router.
+import { register } from "../social media app/controllers/auth.js";    //to create a request router.
 
 
 /*CONFIGURATIONS*/ 

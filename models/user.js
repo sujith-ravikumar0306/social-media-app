@@ -8,38 +8,38 @@ const UserSchema = new mongoose.Schema(
             type:String,
             required:true,
             min: 2,
-            max: 50
+            max: 50,
         },
         lastname: {
             type:String,
             required:true,
             min: 2,
-            max: 50
+            max: 50,
         },
-        email{
+        email:{
             type:String,
             required:true,
             max: 50,
-            unique:true
+            unique:true,
         },
-        password{
-            type:String;
+        password:{
+            type:String,
             required: true,
             min : 5,
             
         },
-        picturePath{
+        picturePath:{
             type:String,
-            default: ""
+            default: "",
         },
-        friends{
+        friends:{
             type:Array,
             default: [],
         },
         location:String,
         occupation: String,
         viewedProfile:Number,
-        impressions:Number
+        impressions:Number,
     } , {timestamps : true});
 
 //creating a mongoose model- pass it into mongoose.model "User"

@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";    //encrypt the password
 import jwt from "jsonwebtoken";  //send user a web token for authorisation
-import User from "../models/user.js";
 import user from "../models/user.js";
 
 /*REGISTER USER */
@@ -60,7 +59,7 @@ export const login = async(req,res) => {
         } 
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET); 
-        delete.user.password;   //make sure password is not sent to frontend
+        delete user.password;   //make sure password is not sent to frontend
         res.status(200).json({token, user});
 
     }catch(err)

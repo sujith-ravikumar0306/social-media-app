@@ -38,6 +38,33 @@ export const register = async (req,res) => {
         const savedUser = await new user.save();
         res.status(201).json(savedUser);
     } catch(err){
-        res.status(500).json({ error:error.message })
+        res.status(500).json({ error:err.message })
+    }
+}
+
+/*LOGGING IN */
+
+export const login = async(req,res) => {
+    try{
+        const { email, password } =req.body;
+        const user = await User.findOne({email: email});    //using mongoose trying to find a specific email
+        if(!user)
+        {
+            return res.status(400).json({msg : "User does not exist!"}); 
+        }
+
+        const isMatch = await bcrypt.compare(password,user.password);
+        if(!isMatch)
+        {
+           return res.status(400).json({msg: "Password does not match!"});
+        } 
+
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET); 
+        delete.user.password;   //make sure password is not sent to frontend
+        res.status(200).json({token, user});
+
+    }catch(err)
+    {
+       res.status(500).json({error: err.message});
     }
 }

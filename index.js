@@ -10,8 +10,10 @@ import helmet from "helmet";            //helps in securing express applications
 import morgan from "morgan";            //It is a great tool that logs the requests along with some other information depending upon its configuration and the preset used. It proves to be very helpful while debugging and also if you want to create Log files.
 import path from "path";                //The Path module provides a way of working with directories and file paths.
 import { fileURLToPath } from "url";    //used to set paths when we configure directories .
+import authRoutes from "../social media app/routes/auth.js";    //path and routes for every type of feature
 import { error, log } from "console";
 import { register } from "../social media app/controllers/auth.js";    //to create a request router.
+import { verifyToken } from "./middleware/auth.js";
 
 
 /*CONFIGURATIONS*/ 
@@ -45,8 +47,12 @@ const upload = multer({ storage })
 
 /*ROUTES WITH FILES */
 
-app.post("/auth/register", upload.single("picture"),register);  //route to path to middleware function( upload picture locally),before hitting the endpoint(register-controller)
+app.post("/auth/register", upload.single("picture") ,register);  //route to path to middleware function( upload picture locally),before hitting the endpoint(register-controller)
 
+
+/*ROUTES */
+
+app.use("/auth", authRoutes);
 
 
 /*MONGOOSE SETUP*/

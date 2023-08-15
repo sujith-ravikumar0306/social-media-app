@@ -12,8 +12,10 @@ import path from "path";                //The Path module provides a way of work
 import { fileURLToPath } from "url";    //used to set paths when we configure directories .
 import authRoutes from "../social media app/routes/auth.js";    //path and routes for every type of feature
 import userRoutes from "../social media app/routes/users.js";
+import postRoutes from "../social media app/routes/posts.js";
 import { error, log } from "console";
 import { register } from "../social media app/controllers/auth.js";    //to create a request router.
+import { createPost } from "../social media app/controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
 
 
@@ -49,7 +51,7 @@ const upload = multer({ storage })
 /*ROUTES WITH FILES */
 
 app.post("/auth/register", upload.single("picture") ,register);  //route to path to middleware function( upload picture locally),before hitting the endpoint(register-controller)
-
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
 /*ROUTES */
 

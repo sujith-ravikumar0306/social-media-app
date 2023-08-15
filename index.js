@@ -11,6 +11,7 @@ import morgan from "morgan";            //It is a great tool that logs the reque
 import path from "path";                //The Path module provides a way of working with directories and file paths.
 import { fileURLToPath } from "url";    //used to set paths when we configure directories .
 import authRoutes from "../social media app/routes/auth.js";    //path and routes for every type of feature
+import userRoutes from "../social media app/routes/users.js";
 import { error, log } from "console";
 import { register } from "../social media app/controllers/auth.js";    //to create a request router.
 import { verifyToken } from "./middleware/auth.js";
@@ -53,6 +54,8 @@ app.post("/auth/register", upload.single("picture") ,register);  //route to path
 /*ROUTES */
 
 app.use("/auth", authRoutes);
+app.use("/auth",userRoutes);
+app.use("/posts", postRoutes);
 
 
 /*MONGOOSE SETUP*/
